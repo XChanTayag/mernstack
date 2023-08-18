@@ -13,7 +13,7 @@ const User = require('../../model/User');
 // @access  Public
 router.get('/', auth, async (req, res) => {
   try {
-    const user = await User.findById(req.user.id);
+    const user = await User.findById(req.user.id).select('-password');
     res.json(user);
   } catch (err) {
     console.error(err.message);
@@ -42,7 +42,7 @@ router.post(
     try {
       let user = await User.findOne({ email });
 
-      if (user) {
+      if (!user) {
         res.status(400).json({ errors: [{ msg: 'Invalid Credentials' }] });
       }
 
