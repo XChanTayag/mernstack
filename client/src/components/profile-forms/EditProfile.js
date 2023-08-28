@@ -26,32 +26,6 @@ const EditProfile = (props) => {
 
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
 
-  useEffect(() => {
-    dispatch(getCurrentProfile());
-
-    if (!loading) {
-      setFormData({
-        company: !profile.company ? '' : profile.company,
-        website: !profile.website ? '' : profile.website,
-        location: !profile.location ? '' : profile.location,
-        status: !profile.status ? '' : profile.status,
-        skills: !profile.skills ? '' : profile.skills.join(','),
-        githubusername: !profile.githubusername ? '' : profile.githubusername,
-        bio: !profile.bio ? '' : profile.bio,
-      });
-      if (profile.social) {
-        setFormData({
-          ...formData,
-          twitter: !profile.social.twitter ? '' : profile.social.twitter,
-          facebook: !profile.social.facebook ? '' : profile.social.facebook,
-          linkedin: !profile.social.linkedin ? '' : profile.social.linkedin,
-          youtube: !profile.social.youtube ? '' : profile.social.youtube,
-          instagram: !profile.social.instagram ? '' : profile.social.instagram,
-        });
-      }
-    }
-  }, [loading]);
-
   const {
     company,
     website,
@@ -66,6 +40,27 @@ const EditProfile = (props) => {
     youtube,
     instagram,
   } = formData;
+
+  useEffect(() => {
+    dispatch(getCurrentProfile());
+
+    setFormData({
+      company: !profile.company ? '' : profile.company,
+      website: !profile.website ? '' : profile.website,
+      location: !profile.location ? '' : profile.location,
+      status: !profile.status ? '' : profile.status,
+      skills: !profile.skills ? '' : profile.skills.join(','),
+      githubusername: !profile.githubusername ? '' : profile.githubusername,
+      bio: !profile.bio ? '' : profile.bio,
+      twitter: !profile.social ? '' : profile.social.twitter,
+      facebook: !profile.social ? '' : profile.social.facebook,
+      linkedin: !profile.social ? '' : profile.social.linkedin,
+      youtube: !profile.social ? '' : profile.social.youtube,
+      instagram: !profile.social ? '' : profile.social.instagram,
+    });
+  }, [loading]);
+
+  console.log(formData);
 
   const onChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 

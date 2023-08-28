@@ -1,0 +1,6 @@
+{
+  "mongoURI": "mongodb+srv://xtiantayag:admin@devconnector.dek0spc.mongodb.net/?retryWrites=true&w=majority",
+  "jwtSecret": "mysecrettoken",
+  "githubClientId": "d9be7b7a4635fbc89ac3",
+  "githubSecret": "554929373e990b040ec9343a1a0a388577a75465"
+}
